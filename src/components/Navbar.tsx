@@ -9,9 +9,9 @@ import {
   X, 
   Bot, 
   Calculator,
-  Search,
-  Wrench,
-  Award
+  Award,
+  Sparkles,
+  Eye
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -32,6 +32,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   openAiAdvisor,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLogoModal, setShowLogoModal] = useState(false);
+  const [activeLogoVariant, setActiveLogoVariant] = useState<'full' | 'stacked' | 'original-image'>('stacked');
 
   const navItems = [
     { id: 'inicio', label: 'Inicio' },
@@ -56,16 +58,21 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Top Bar for Trust & Contact */}
       <div className="bg-blue-900 text-slate-100 text-xs py-1.5 px-4 border-b border-blue-800">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center gap-4 text-slate-200">
+          <div className="flex items-center gap-3 text-slate-200">
             <span className="flex items-center gap-1.5 text-amber-300 font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
               Certificación ISO 9001 & RETIE | SuperVigilancia
             </span>
             <span className="hidden md:inline text-blue-700">|</span>
-            <span className="hidden md:inline flex items-center gap-1 text-slate-100">
-              <Award className="w-3.5 h-3.5 text-amber-300" />
-              Póliza de Garantía Extendida hasta 5 Años
-            </span>
+            
+            {/* Logo Options Trigger */}
+            <button
+              onClick={() => setShowLogoModal(true)}
+              className="flex items-center gap-1.5 bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-400/40 text-[11px] font-bold cursor-pointer transition-all"
+            >
+              <Eye className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+              <span>Ver Opciones de Logo</span>
+            </button>
           </div>
 
           <div className="flex items-center gap-4 text-slate-100">
@@ -93,8 +100,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Main Nav */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        <div onClick={() => handleNavClick('inicio')}>
-          <Logo size="md" />
+        <div 
+          onClick={() => handleNavClick('inicio')} 
+          className="flex items-center gap-2 cursor-pointer group"
+          title="Ver o cambiar opción de logo"
+        >
+          <Logo size="md" variant={activeLogoVariant} />
         </div>
 
         {/* Desktop Links */}
@@ -180,6 +191,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
+                setShowLogoModal(true);
+              }}
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-amber-100 text-slate-900 border border-amber-300 text-xs font-bold"
+            >
+              <Eye className="w-4 h-4 text-amber-700" />
+              Ver Opciones de Logo de Marca
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
                 openAiAdvisor();
               }}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 text-sm font-bold"
@@ -190,6 +211,109 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
       )}
+
+      {/* Logo Variant Selector Modal */}
+      {showLogoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md">
+          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-slate-900 space-y-6 shadow-2xl">
+            <div className="flex justify-between items-center border-b border-slate-200 pb-4">
+              <div>
+                <span className="text-[10px] font-mono font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200 uppercase">
+                  IDENTIDAD VISUAL SEVEN SECURITY SAS
+                </span>
+                <h3 className="text-xl font-black text-slate-900 font-sans mt-1">
+                  Opciones de Logo Oficial
+                </h3>
+              </div>
+              <button 
+                onClick={() => setShowLogoModal(false)} 
+                className="text-slate-400 hover:text-slate-900 p-1.5 rounded-lg hover:bg-slate-100 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Hemos adaptado el diseño exactamente según la imagen de referencia. Puedes elegir qué presentación deseas utilizar como logo principal en el sitio web:
+            </p>
+
+            <div className="grid sm:grid-cols-3 gap-4">
+              {/* Option 1: Exact Image Replica Vector (Stacked) */}
+              <div 
+                onClick={() => setActiveLogoVariant('stacked')}
+                className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex flex-col items-center justify-between text-center space-y-3 ${
+                  activeLogoVariant === 'stacked'
+                    ? 'border-blue-600 bg-blue-50/60 shadow-md ring-2 ring-blue-500/20'
+                    : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                }`}
+              >
+                <span className="text-[10px] font-bold font-mono text-blue-800 bg-white px-2 py-0.5 rounded border border-slate-200">
+                  OPCIÓN A (Recomendada)
+                </span>
+                <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-sm w-full flex justify-center">
+                  <Logo size="md" variant="stacked" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-900">Logo Fiel a la Imagen</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">Cámara superior + Texto futurista azul marino + Slogan</div>
+                </div>
+              </div>
+
+              {/* Option 2: Horizontal Compact for Navbar */}
+              <div 
+                onClick={() => setActiveLogoVariant('full')}
+                className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex flex-col items-center justify-between text-center space-y-3 ${
+                  activeLogoVariant === 'full'
+                    ? 'border-blue-600 bg-blue-50/60 shadow-md ring-2 ring-blue-500/20'
+                    : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                }`}
+              >
+                <span className="text-[10px] font-bold font-mono text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200">
+                  OPCIÓN B
+                </span>
+                <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-sm w-full flex justify-center items-center h-28">
+                  <Logo size="md" variant="full" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-900">Horizontal Menú</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">Optimizado para la barra de navegación superior</div>
+                </div>
+              </div>
+
+              {/* Option 3: Direct High-Res Image */}
+              <div 
+                onClick={() => setActiveLogoVariant('original-image')}
+                className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex flex-col items-center justify-between text-center space-y-3 ${
+                  activeLogoVariant === 'original-image'
+                    ? 'border-blue-600 bg-blue-50/60 shadow-md ring-2 ring-blue-500/20'
+                    : 'border-slate-200 bg-slate-50 hover:border-slate-300'
+                }`}
+              >
+                <span className="text-[10px] font-bold font-mono text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200">
+                  OPCIÓN C
+                </span>
+                <div className="bg-white p-3 rounded-lg border border-slate-200 shadow-sm w-full flex justify-center items-center h-28">
+                  <Logo size="md" variant="original-image" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-900">Imagen Renderizada</div>
+                  <div className="text-[10px] text-slate-500 mt-0.5">Imagen original provista por el usuario</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={() => setShowLogoModal(false)}
+                className="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs shadow-md hover:bg-blue-700 transition-all"
+              >
+                Aplicar Logo Seleccionado
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
+
