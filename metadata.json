@@ -1,0 +1,6 @@
+{
+  "name": "Seven Security SAS",
+  "description": "Plataforma oficial de Seven Security SAS - Soluciones integrales de videovigilancia 4K, control de acceso biométrico, alarmas inteligentes, catálogo técnico, pasarela de pago segura y soporte especializado.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
