@@ -88,7 +88,11 @@ export const Footer: React.FC<FooterProps> = ({ setActiveSection, openQuoteModal
             <div className="space-y-2 font-mono text-slate-300">
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-amber-400" />
-                <span>(601) 700 7777 (24/7)</span>
+                <span>PBX: (601) 700 7777 (24/7)</span>
+              </div>
+              <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                <span>WhatsApp: (+57) 350 657 7957</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-amber-400" />

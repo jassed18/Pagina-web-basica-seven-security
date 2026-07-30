@@ -154,7 +154,7 @@ export const WhatsAppChatModal: React.FC<WhatsAppChatModalProps> = ({
 
   const handleOpenExternalWhatsApp = () => {
     const defaultText = `Hola Seven Security S.A.S., mi nombre es ${userName || 'Cliente'} (${userPhone || 'sin teléfono'}). Deseo información sobre servicios de seguridad.`;
-    const url = `https://wa.me/573007007777?text=${encodeURIComponent(defaultText)}`;
+    const url = `https://wa.me/573506577957?text=${encodeURIComponent(defaultText)}`;
     window.open(url, '_blank');
   };
 
@@ -181,9 +181,9 @@ export const WhatsAppChatModal: React.FC<WhatsAppChatModalProps> = ({
                 <h3 className="font-bold text-sm tracking-wide leading-none">Seven Security S.A.S.</h3>
                 <ShieldCheck className="w-4 h-4 text-emerald-300 flex-shrink-0" />
               </div>
-              <p className="text-[11px] text-emerald-100/90 font-mono mt-0.5 flex items-center gap-1">
+              <p className="text-[11px] text-emerald-100/90 font-mono mt-0.5 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
-                En línea 24/7 • Respuestas inmediatas
+                <span>Línea: (+57) 350 657 7957</span>
               </p>
             </div>
           </div>

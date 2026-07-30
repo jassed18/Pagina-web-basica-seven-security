@@ -90,10 +90,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => openWhatsAppModal?.()}
               className="flex items-center gap-1 text-emerald-300 font-bold hover:text-emerald-200 transition-colors cursor-pointer"
-              title="Abrir Chat de WhatsApp Directo en pantalla"
+              title="Abrir Chat de WhatsApp Directo en pantalla (350 657 7957)"
             >
               <MessageSquare className="w-3.5 h-3.5 fill-emerald-400/30 text-emerald-300" />
-              <span>WhatsApp Directo 24/7</span>
+              <span>WhatsApp: 350 657 7957</span>
             </button>
           </div>
         </div>

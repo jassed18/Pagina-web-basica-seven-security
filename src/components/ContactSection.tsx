@@ -211,13 +211,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ openWhatsAppModa
                   if (openWhatsAppModal) {
                     openWhatsAppModal();
                   } else {
-                    window.open('https://wa.me/573007007777?text=Hola%20Seven%20Security', '_blank');
+                    window.open('https://wa.me/573506577957?text=Hola%20Seven%20Security', '_blank');
                   }
                 }}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-extrabold text-xs text-white shadow-lg transition-all cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Abrir Chat WhatsApp Directo en Pantalla</span>
+                <span>Abrir Chat WhatsApp Directo: 350 657 7957</span>
               </button>
             </div>
 
