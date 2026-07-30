@@ -10,6 +10,7 @@ import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
 import { CheckoutModal } from './components/CheckoutModal';
 import { GeminiSecurityAdvisor } from './components/GeminiSecurityAdvisor';
+import { WhatsAppChatModal } from './components/WhatsAppChatModal';
 import { Footer } from './components/Footer';
 
 import { Device, CartItem, CategoryType, WarrantyTier } from './types';
@@ -34,6 +35,7 @@ export default function App() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const [isAiAdvisorOpen, setIsAiAdvisorOpen] = useState(false);
+  const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
 
   // Selected Category filter for Catalog when clicking from Services
   const [catalogCategoryFilter, setCatalogCategoryFilter] = useState<CategoryType>('all');
@@ -100,6 +102,7 @@ export default function App() {
         openCart={() => setIsCartModalOpen(true)}
         openQuoteModal={() => setIsQuoteModalOpen(true)}
         openAiAdvisor={() => setIsAiAdvisorOpen(true)}
+        openWhatsAppModal={() => setIsWhatsAppModalOpen(true)}
       />
 
       {/* Main Content Sections */}
@@ -134,7 +137,7 @@ export default function App() {
         <TestimonialsSection />
 
         {/* Contact & Free Technical Inspection Form */}
-        <ContactSection />
+        <ContactSection openWhatsAppModal={() => setIsWhatsAppModalOpen(true)} />
       </main>
 
       {/* Footer */}
@@ -156,18 +159,16 @@ export default function App() {
           </span>
         </button>
 
-        <a
-          href="https://wa.me/573007007777?text=Hola%20Seven%20Security,%20deseo%20m%C3%A1s%20informaci%C3%B3n"
-          target="_blank"
-          rel="noreferrer"
+        <button
+          onClick={() => setIsWhatsAppModalOpen(true)}
           className="p-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-xl shadow-emerald-500/30 transition-all hover:scale-110 cursor-pointer group relative"
-          title="WhatsApp Directo"
+          title="WhatsApp Directo Chat En Vivo"
         >
           <MessageSquare className="w-6 h-6 fill-slate-950" />
           <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-slate-900 border border-slate-700 text-slate-200 text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
-            WhatsApp 24/7
+            WhatsApp Directo 24/7
           </span>
-        </a>
+        </button>
       </div>
 
       {/* Interactive Modals */}
@@ -196,6 +197,15 @@ export default function App() {
         onClose={() => setIsAiAdvisorOpen(false)}
         openQuoteModal={() => {
           setIsAiAdvisorOpen(false);
+          setIsQuoteModalOpen(true);
+        }}
+      />
+
+      <WhatsAppChatModal
+        isOpen={isWhatsAppModalOpen}
+        onClose={() => setIsWhatsAppModalOpen(false)}
+        openQuoteModal={() => {
+          setIsWhatsAppModalOpen(false);
           setIsQuoteModalOpen(true);
         }}
       />

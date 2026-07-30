@@ -11,7 +11,11 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  openWhatsAppModal?: () => void;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ openWhatsAppModal }) => {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -202,15 +206,19 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <a
-                href="https://wa.me/573007007777?text=Hola%20Seven%20Security,%20necesito%20asesor%C3%ADa%20comercial"
-                target="_blank"
-                rel="noreferrer"
+              <button
+                onClick={() => {
+                  if (openWhatsAppModal) {
+                    openWhatsAppModal();
+                  } else {
+                    window.open('https://wa.me/573007007777?text=Hola%20Seven%20Security', '_blank');
+                  }
+                }}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-extrabold text-xs text-white shadow-lg transition-all cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Escribir por WhatsApp a Asesor Comercial</span>
-              </a>
+                <span>Abrir Chat WhatsApp Directo en Pantalla</span>
+              </button>
             </div>
 
             {/* Offices List */}

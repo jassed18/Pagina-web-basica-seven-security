@@ -21,6 +21,7 @@ interface NavbarProps {
   openCart: () => void;
   openQuoteModal: () => void;
   openAiAdvisor: () => void;
+  openWhatsAppModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -30,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   openCart,
   openQuoteModal,
   openAiAdvisor,
+  openWhatsAppModal,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLogoModal, setShowLogoModal] = useState(false);
@@ -85,15 +87,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-[10px] bg-amber-400 text-slate-950 font-bold px-1.5 py-0.2 rounded font-mono">24/7</span>
             </a>
             <span className="text-blue-700">|</span>
-            <a
-              href="https://wa.me/573007007777?text=Hola%20Seven%20Security,%20quisiera%20solicitar%20una%20visita%20t%C3%A9cnica"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 text-emerald-300 font-bold hover:text-emerald-200 transition-colors"
+            <button
+              onClick={() => openWhatsAppModal?.()}
+              className="flex items-center gap-1 text-emerald-300 font-bold hover:text-emerald-200 transition-colors cursor-pointer"
+              title="Abrir Chat de WhatsApp Directo en pantalla"
             >
               <MessageSquare className="w-3.5 h-3.5 fill-emerald-400/30 text-emerald-300" />
-              <span>WhatsApp Directo</span>
-            </a>
+              <span>WhatsApp Directo 24/7</span>
+            </button>
           </div>
         </div>
       </div>
